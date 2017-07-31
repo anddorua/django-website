@@ -1,15 +1,13 @@
 from django.conf.urls import url
-from .views import index, detail, favorite
+from . import views
 
 app_name = 'music'
 
 urlpatterns = [
     # /music/
-    url(r'^$', index, name='index'),
+    url(r'^$', views.IndexView.as_view(), name='index'),
 
     # /music/123/
-    url(r'^(?P<album_id>\d+)/$', detail, name='detail'),
+    url(r'^(?P<pk>\d+)/$', views.DetailView.as_view(), name='detail'),
 
-    # /music/123/favorite/
-    url(r'^(?P<album_id>\d+)/favorite/$', favorite, name='favorite')
 ]
