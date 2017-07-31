@@ -1,15 +1,20 @@
-{% load staticfiles %}
-<link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}">
+{% extends 'music/base.html' %}
 
-{% if all_albums %}
-    <h3>Here is all albums</h3>
-    <ul>
-        {% for album in all_albums %}
-        <li>
-            <a href="{% url 'music:detail' album.id %}">{{ album.album_title }}</a>
-        </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <h3>You don't have any albums</h3>
-{% endif %}
+{% block title %}
+    Albums
+{% endblock %}
+
+{% block body %}
+    {% if all_albums %}
+        <h3>Here is all albums</h3>
+        <ul>
+            {% for album in all_albums %}
+            <li>
+                <a href="{% url 'music:detail' album.id %}">{{ album.album_title }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3>You don't have any albums</h3>
+    {% endif %}
+{% endblock %}
